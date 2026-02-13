@@ -1,105 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Sona ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanyukta ❤️</title>
+
 <style>
 body{
-margin:0;
-padding:0;
-font-family:Arial;
-text-align:center;
-background:linear-gradient(45deg,#ff4e8d,#ff9a9e);
-color:white;
-overflow-x:hidden;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* Blur background when popup open */
+.blur{
+  filter:blur(5px);
+  pointer-events:none;
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-10px;
+  animation:floatUp 6s linear infinite;
+  font-size:20px;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-100vh);opacity:0;}
 }
 
 h1{
-margin-top:40px;
-font-size:30px;
+  margin-top:40px;
+  font-size:38px;
 }
 
 button{
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:30px;
-background:white;
-color:#ff4e8d;
-cursor:pointer;
-margin-top:20px;
-}
-
-.message{
-display:none;
-margin-top:20px;
-font-size:20px;
-animation:fade 1s ease-in-out;
-}
-
-@keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
+  padding:15px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:40px;
+  background:white;
+  color:#ff4d6d;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
 .gallery{
-margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  padding:20px;
 }
-
 .gallery img{
-width:150px;
-height:150px;
-object-fit:cover;
-border-radius:20px;
-margin:10px;
-box-shadow:0 0 15px white;
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
-footer{
-margin-top:40px;
-font-size:14px;
+/* Popup */
+.popup{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+.popup-box{
+  background:white;
+  color:#ff4d6d;
+  padding:25px;
+  border-radius:20px;
+  width:80%;
+  max-width:350px;
+  animation:pop 0.5s;
+}
+@keyframes pop{
+  from{transform:scale(0.5);}
+  to{transform:scale(1);}
+}
+
+.popup-box h2{
+  margin-top:0;
+}
+.popup-box button{
+  margin:10px;
+}
+
+.no{
+  position:relative;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Sanyukta ❤️</h1>
-<h2>My Sona 💖</h2>
+<div id="main">
 
-<button onclick="showMessage()">Click Here Sona 💍</button>
+<h1>Sanyukta ❤️<br>My Sona 💖</h1>
 
-<div class="message" id="loveMessage">
-Mala tu khup avadate ❤️<br>
-Majashi lagn karshil ka? 💍<br><br>
-Mi tuza shivay rahu shakat nahi 🥺<br>
-Tu maza jiv ahes 💞<br><br>
-Forever & Ever ♾️
-</div>
+<button onclick="openPopup()">Click Here Sona 💍</button>
 
 <div class="gallery">
-<img src="file_00000005b8c72098dd4ab4953cdabb5.jpg">
-<img src="file_000000079b87209bf8c3cf3ac3e9a78.jpg">
-<img src="file_0000000a30872098ec8eb961e7d3299.jpg">
-<img src="file_0000000ac247209996708e69500b88b.jpg">
-<img src="file_0000000acc87209a85b34aa1c1d35cc.jpg">
-<img src="file_0000000ce0c7209b88ca2070c61e9cf.jpg">
-<img src="file_0000000ce3072098bd5abd65caf9760.png">
-<img src="file_0000000f33472098fb81bf4506d6d8c.jpg">
+  <!-- 👉 PHOTO NAMES इथे change कर -->
+  <img src="file_00000005b8c72098dd4ab4953cdabb5.jpg">
+  <img src="file_000000079b87209bf8c3cf3ac3e9a78.jpg">
+  <img src="file_0000000a30872098ec8eb961e7d3299.jpg">
+  <img src="file_0000000ac247209996708e69500b88b.jpg">
 </div>
 
-<footer>
-Made with Love by Harshal ❤️
-</footer>
+</div>
 
-<audio autoplay loop>
-<source src="https://www2.cs.uic.edu/~i101/SoundFiles/Perfect.wav" type="audio/wav">
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h2>Sanyukta ❤️</h2>
+    <p>
+      Mala tu khup avadate 🥺💕<br>
+      Mi tuza shivay rahu shakat nahi…<br><br>
+      💍 Majashi lagn karshil ka?
+    </p>
+    <button onclick="yesLove()">YES 💖</button>
+    <button class="no" onmouseover="moveNo()">NO 😜</button>
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function showMessage(){
-document.getElementById("loveMessage").style.display="block";
+function openPopup(){
+  document.getElementById("popup").style.display="flex";
+  document.getElementById("main").classList.add("blur");
+  document.getElementById("music").play();
 }
+
+function yesLove(){
+  document.querySelector(".popup-box").innerHTML=
+  "<h2>She Said YES 💍❤️</h2><p>Forever & Always<br>I Love You Sona 💖</p>";
+}
+
+function moveNo(){
+  const btn=document.querySelector(".no");
+  btn.style.left=Math.random()*100-50+"px";
+  btn.style.top=Math.random()*50-25+"px";
+}
+
+/* Floating hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*20+10)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
 </script>
 
 </body>
