@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Sona ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+padding:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(45deg,#ff4e8d,#ff9a9e);
+color:white;
+overflow-x:hidden;
+}
+
+h1{
+margin-top:40px;
+font-size:30px;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4e8d;
+cursor:pointer;
+margin-top:20px;
+}
+
+.message{
+display:none;
+margin-top:20px;
+font-size:20px;
+animation:fade 1s ease-in-out;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.gallery{
+margin-top:30px;
+}
+
+.gallery img{
+width:150px;
+height:150px;
+object-fit:cover;
+border-radius:20px;
+margin:10px;
+box-shadow:0 0 15px white;
+}
+
+footer{
+margin-top:40px;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Sanyukta ❤️</h1>
+<h2>My Sona 💖</h2>
+
+<button onclick="showMessage()">Click Here Sona 💍</button>
+
+<div class="message" id="loveMessage">
+Mala tu khup avadate ❤️<br>
+Majashi lagn karshil ka? 💍<br><br>
+Mi tuza shivay rahu shakat nahi 🥺<br>
+Tu maza jiv ahes 💞<br><br>
+Forever & Ever ♾️
+</div>
+
+<div class="gallery">
+<img src="1.jpg">
+<img src="2.jpg">
+<img src="3.jpg">
+<img src="4.jpg">
+<img src="5.jpg">
+<img src="6.jpg">
+<img src="7.jpg">
+<img src="8.jpg">
+</div>
+
+<footer>
+Made with Love by Harshal ❤️
+</footer>
+
+<audio autoplay loop>
+<source src="https://www2.cs.uic.edu/~i101/SoundFiles/Perfect.wav" type="audio/wav">
+</audio>
+
+<script>
+function showMessage(){
+document.getElementById("loveMessage").style.display="block";
+}
+</script>
+
+</body>
+</html>
