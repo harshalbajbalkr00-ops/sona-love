@@ -2,49 +2,39 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Sona ❤️</title>
+<title>Only For You ❤️</title>
 
 <style>
 body{
   margin:0;
-  font-family: 'Courier New', monospace;
+  font-family:'Courier New',monospace;
   background:black;
   color:white;
   text-align:center;
   overflow:hidden;
 }
 
-/* Stars Background */
+/* Stars */
 .star{
   position:absolute;
-  width:2px;
-  height:2px;
+  width:2px;height:2px;
   background:white;
-  animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-  from{opacity:0.3;}
-  to{opacity:1;}
+  opacity:0.6;
 }
 
-/* Center Content */
-.container{
+/* Center */
+.center{
   position:absolute;
-  top:50%;
-  left:50%;
+  top:50%;left:50%;
   transform:translate(-50%,-50%);
   width:90%;
 }
 
-/* Typewriter */
-#story{
-  font-size:18px;
-  min-height:120px;
-}
+/* Animations */
+.fade{animation:fadeIn 2s;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
-/* Button */
 button{
-  margin-top:20px;
   padding:12px 25px;
   border:none;
   border-radius:30px;
@@ -52,35 +42,60 @@ button{
   color:white;
   font-size:16px;
   cursor:pointer;
-  display:none;
+  margin-top:20px;
 }
 
-/* Proposal Box */
-#proposal{
+/* Countdown */
+#countdown{
+  font-size:60px;
+  color:#ff4d6d;
+}
+
+/* Promise list */
+.promise{
   display:none;
-  margin-top:20px;
-  font-size:20px;
+  margin-top:10px;
+  font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Sanyukta ❤️</h1>
-  <div id="story"></div>
-  <button id="nextBtn" onclick="showProposal()">Continue 💌</button>
+<div class="center">
 
-  <div id="proposal">
+  <div id="countdown">3</div>
+
+  <div id="name" style="display:none;font-size:32px;" class="fade"></div>
+
+  <div id="story" style="display:none;" class="fade">
     <p>
-    सोना…  
-    माझ्या प्रत्येक श्वासात तू आहेस.  
-    माझ्या प्रत्येक स्वप्नात तू आहेस.  
-    तुझ्याशिवाय आयुष्य अपूर्ण आहे…  
-    💍 माझ्याशी लग्न करशील का?
+      सोना…  
+      माझ्या प्रत्येक श्वासात तू आहेस.  
+      माझ्या प्रत्येक स्वप्नात तू आहेस.  
+      तुझ्याशिवाय आयुष्य अपूर्ण आहे…
+    </p>
+    <button onclick="showProposal()">Continue 💌</button>
+  </div>
+
+  <div id="proposal" style="display:none;" class="fade">
+    <p style="font-size:20px;">
+      💍 माझ्याशी लग्न करशील का?
     </p>
     <button onclick="yesLove()">YES 💖</button>
   </div>
+
+  <div id="promises" style="display:none;" class="fade">
+    <h2>My Promises 💍</h2>
+    <div class="promise">❤️ नेहमी तुझा आदर करीन</div>
+    <div class="promise">❤️ तुझ्या प्रत्येक स्वप्नात साथ देईन</div>
+    <div class="promise">❤️ तुझ्या डोळ्यात अश्रू येऊ देणार नाही</div>
+    <div class="promise">❤️ तुझ्या हसण्याचं कारण बनेन</div>
+    <div class="promise">❤️ सुख-दुःखात कधीही सोडणार नाही</div>
+    <div class="promise">❤️ प्रत्येक जन्मी तुझाच असेन</div>
+    <div class="promise">❤️ Forever & Always ❤️</div>
+  </div>
+
 </div>
 
 <audio id="music" loop>
@@ -88,9 +103,8 @@ button{
 </audio>
 
 <script>
-
-/* Stars generate */
-for(let i=0;i<100;i++){
+/* Stars */
+for(let i=0;i<120;i++){
   let s=document.createElement("div");
   s.className="star";
   s.style.top=Math.random()*100+"vh";
@@ -98,29 +112,48 @@ for(let i=0;i<100;i++){
   document.body.appendChild(s);
 }
 
-/* Typewriter Story */
-const text = "एक दिवस अचानक तू माझ्या आयुष्यात आलीस...\nआणि सगळं काही बदलून गेलं.\nतुझं हसणं माझ्या जगण्याचं कारण बनलं...\nआज तुला काही खास सांगायचं आहे...";
-let i=0;
-function typeWriter(){
-  if(i<text.length){
-    document.getElementById("story").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter,40);
-  }else{
-    document.getElementById("nextBtn").style.display="inline-block";
+/* Countdown */
+let c=3;
+let cd=document.getElementById("countdown");
+let timer=setInterval(()=>{
+  c--;
+  cd.innerText=c;
+  if(c===0){
+    clearInterval(timer);
+    cd.style.display="none";
+    revealName();
   }
-}
-typeWriter();
+},1000);
 
-/* Show Proposal */
+/* Name reveal */
+let name="SANYUKTA ❤️";
+let i=0;
+function revealName(){
+  let n=document.getElementById("name");
+  n.style.display="block";
+  let t=setInterval(()=>{
+    n.innerHTML+=name.charAt(i);
+    i++;
+    if(i===name.length){
+      clearInterval(t);
+      document.getElementById("story").style.display="block";
+    }
+  },200);
+}
+
+/* Proposal */
 function showProposal(){
   document.getElementById("proposal").style.display="block";
   document.getElementById("music").play();
 }
 
-/* YES Click */
 function yesLove(){
-  document.body.innerHTML="<h1 style='color:#ff4d6d;margin-top:40%;'>She Said YES 💍❤️<br>Forever My Sona 💖</h1>";
+  document.getElementById("proposal").style.display="none";
+  document.getElementById("promises").style.display="block";
+  let ps=document.querySelectorAll(".promise");
+  ps.forEach((p,i)=>{
+    setTimeout(()=>p.style.display="block",i*800);
+  });
 }
 </script>
 
